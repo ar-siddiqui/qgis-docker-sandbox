@@ -10,7 +10,7 @@ app.config["DEBUG"] = True
 
 @app.route("/")
 def ping():
-    return jsonify("I am a QGIS Processor!"), HTTPStatus.OK
+    return "I am a QGIS Processor! 🌍⚙️", HTTPStatus.OK, {"Content-Type": "text/plain; charset=utf-8"}
 
 
 @app.route("/list")
