@@ -1,3 +1,4 @@
+import logging
 import sys
 from io import StringIO
 
@@ -9,8 +10,8 @@ from werkzeug.exceptions import BadRequest
 sys.path.append("/usr/share/qgis/python/plugins")
 
 import processing
-from curve_number_generator.processing.curve_number_generator_provider import CurveNumberGeneratorProvider
 from processing.core.Processing import Processing
+
 
 ## Init QGIS Processing
 # See https://gis.stackexchange.com/a/155852/4972 for details about the prefix
@@ -18,9 +19,15 @@ QgsApplication.setPrefixPath("/usr", True)
 qgs = QgsApplication([], False)
 qgs.initQgis()
 
+## Add third party plugins
 Processing.initialize()
-provider = CurveNumberGeneratorProvider()
-QgsApplication.processingRegistry().addProvider(provider)
+try:
+    from curve_number_generator.processing.curve_number_generator_provider import CurveNumberGeneratorProvider
+
+    provider = CurveNumberGeneratorProvider()
+    QgsApplication.processingRegistry().addProvider(provider)
+except Exception as e:
+    logging.error(str(e))
 
 
 def list_algorithms():
