@@ -36,7 +36,14 @@ def list_algorithms():
     return algorithms
 
 
+all_algs = list_algorithms()
+providers_ids = {alg["provider_id"] for alg in all_algs}
+alg_ids = {alg["algorithm_id"] for alg in all_algs}
+
+
 def get_alg_help(provider_id, algorithm_id):
+    verify_alg_ids(provider_id, algorithm_id)
+
     save_stdout = sys.stdout
     result = StringIO()
     sys.stdout = result
@@ -55,10 +62,17 @@ def get_alg_help(provider_id, algorithm_id):
 
 
 def process_alg(provider_id, algorithm_id, data):
-
+    verify_alg_ids(provider_id, algorithm_id)
     data_str = str(data)
     if "TEMPORARY_OUTPUT" in data_str:
         raise BadRequest("'TEMPORARY_OUTPUT' is not allowed. Please provide a filepath for the output")
 
     result = processing.run(f"{provider_id}:{algorithm_id}", data)
     return result
+
+
+def verify_alg_ids(provider_id, algorithm_id):
+    if not provider_id in providers_ids:
+        raise BadRequest(f"'{provider_id}' is not a valid provider_id. Request valid ids using '/list'")
+    if not algorithm_id in alg_ids:
+        raise BadRequest(f"'{algorithm_id}' is not a valid algorithm_id. Request valid ids using '/list'")
