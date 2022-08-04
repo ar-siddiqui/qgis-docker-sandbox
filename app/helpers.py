@@ -1,8 +1,11 @@
 import logging
+import os
 import sys
+from datetime import datetime
 from io import StringIO
 
 import html2text
+from pytz import timezone
 from qgis.core import QgsApplication
 from werkzeug.exceptions import BadRequest
 
@@ -12,6 +15,7 @@ sys.path.append("/usr/share/qgis/python/plugins")
 import processing
 from processing.core.Processing import Processing
 
+from utils import Logger
 
 ## Init QGIS Processing
 # See https://gis.stackexchange.com/a/155852/4972 for details about the prefix
@@ -74,7 +78,12 @@ def process_alg(provider_id, algorithm_id, data):
     if "TEMPORARY_OUTPUT" in data_str:
         raise BadRequest("'TEMPORARY_OUTPUT' is not allowed. Please provide a filepath for the output")
 
-    result = processing.run(f"{provider_id}:{algorithm_id}", data)
+    date = datetime.now(timezone(os.environ["TIMEZONE"])).date().strftime("%Y_%m_%d")
+    time_now = datetime.now(timezone(os.environ["TIMEZONE"])).time().strftime("%H_%M_%S")
+    log_file = f"{date}_{time_now}_{provider_id}_{algorithm_id}.log"
+    feedback = Logger(log_file)
+
+    result = processing.run(f"{provider_id}:{algorithm_id}", data, feedback=feedback)
     return result
 
 
