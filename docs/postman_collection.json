@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "02c0712f-a0cc-4128-94af-4c8fedb958c9",
+		"name": "qgis-processing-rest-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14419355"
+	},
+	"item": [
+		{
+			"name": "ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/list",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "help/curvenumbergenerator/conusnlcdssurgo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/help/curvenumbergenerator/conusnlcdssurgo",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"help",
+						"curvenumbergenerator",
+						"conusnlcdssurgo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "help/curvenumbergenerator/custom",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/help/curvenumbergenerator/custom",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"help",
+						"curvenumbergenerator",
+						"custom"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "process/curvenumbergenerator/conusnlcdssurgo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"aoi\":\"/test-data/inputs/aoi.shp\",\r\n    \"CnLookup\":null,\r\n    \"DrainedSoils\":true,\r\n    \"CurveNumber\": \"/test-data/outputs/conusnlcdssurgo/curve_number.shp\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/process/curvenumbergenerator/conusnlcdssurgo",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"process",
+						"curvenumbergenerator",
+						"conusnlcdssurgo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "process/curvenumbergenerator/custom",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"aoi\":\"/test-data/inputs/aoi.shp\",\r\n    \"CnLookup\":\"/usr/share/qgis/python/plugins/curve_number_generator/processing/algorithms/conus_nlcd_ssurgo/default_lookup.csv\",\r\n    \"LandCover\":\"/test-data/inputs/custom/lc_custom.tif\",\r\n    \"Soils\":\"/test-data/inputs/custom/soils_custom.shp\",\r\n    \"SoilLookupField\": \"hydgrpdcd\",\r\n    \"CurveNumber\": \"/test-data/outputs/custom/curve_number.shp\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/process/curvenumbergenerator/custom",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"process",
+						"curvenumbergenerator",
+						"custom"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "process/native/buffer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"INPUT\": \"/test-data/inputs/aoi.shp\",\r\n    \"DISTANCE\": 0.01,\r\n    \"SEGMENTS\": 5,\r\n    \"END_CAP_STYLE\": 0,\r\n    \"JOIN_STYLE\": 0,\r\n    \"MITER_LIMIT\": 2,\r\n    \"DISSOLVE\": false,\r\n    \"OUTPUT\": \"/test-data/outputs/buffer/aoi_buff.shp\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/process/native/buffer",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"process",
+						"native",
+						"buffer"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:5000",
+			"type": "string"
+		}
+	]
+}
