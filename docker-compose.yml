@@ -7,7 +7,7 @@ services:
       build:
         context: .
       volumes:
-        - ./qgis-data:/qgis-data
+        - ./test-data:/test-data
         - ./app:/app
       env_file: ./.env
       ports:
