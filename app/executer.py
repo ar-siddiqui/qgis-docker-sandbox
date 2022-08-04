@@ -18,7 +18,7 @@ def execute_request(func: str, *args) -> Tuple[wrappers.Request, HTTPStatus]:
             return jsonify(list_algorithms()), HTTPStatus.OK
 
         elif func == "get_alg_help":
-            return jsonify(get_alg_help(*args)), HTTPStatus.OK
+            return get_alg_help(*args), HTTPStatus.OK, {"Content-Type": "text/plain; charset=utf-8"}
 
         elif func == "process_alg":
             return jsonify(process_alg(*args)), HTTPStatus.OK
