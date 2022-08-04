@@ -1,4 +1,10 @@
 app/__pycache__/
 .env
-test-data/
+
+# test-data
+/test-data/outputs/**
+!test-data/outputs/*/
+!test-data/outputs/*/.gitkeep
+
+# logs
 *.log
