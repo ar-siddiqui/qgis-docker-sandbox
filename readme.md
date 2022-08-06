@@ -10,7 +10,7 @@ QGIS processing framework guide: https://docs.qgis.org/3.22/en/docs/user_manual/
 
 `GET /ping` - check the status of the API
 
-`GET /list` - lisg all QGIS processing algorithms available
+`GET /list` - lisg all QGIS processing algorithms available and their `provider_id` and `algorithm_id`
 
 `GET /help/<provider_id>/<algorithm_id>` - return help and documentation for the specified algorithm
 
