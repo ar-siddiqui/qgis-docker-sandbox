@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a REST API that expose algorithms written in QGIS processing framework.
+This is a REST API that allows calling algorithms written in QGIS processing framework through http requests.
 
 QGIS processing framework guide: https://docs.qgis.org/3.22/en/docs/user_manual/processing/index.html
 
@@ -14,7 +14,7 @@ QGIS processing framework guide: https://docs.qgis.org/3.22/en/docs/user_manual/
 
 `GET /help/<provider_id>/<algorithm_id>` - return help and documentation for the specified algorithm
 
-`POST /process/<provider_id>/<algorithm_id>` - process the specified algorithm with given parameters. Accepts JSON produces JSON.
+`POST /process/<provider_id>/<algorithm_id>` - process the specified algorithm with given data. Accepts JSON produces JSON.
 
 ## Contents
 
