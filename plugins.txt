@@ -1,0 +1,2 @@
+curve_number_generator==2.0.0
+QNSPECT==1.0
